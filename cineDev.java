@@ -8,8 +8,6 @@ public class cineDev {
         //ENTRADA NO SISTEMA(CADASTRO)
         System.out.println("Dígite o seu nome");
         String nome = sc.next();
-        System.out.println("Dígite seu CPF");
-        int cpf = sc.nextInt();
         //definindo as variáveis
         int[][] acentos = {
             // Fileira 1
@@ -37,30 +35,44 @@ public class cineDev {
         System.out.println("Tem certeza que esses são seus dados?");
         String opc = sc.next();
         if(opc.equals("Sim")||opc.equals("SIM")||opc.equals("sim")){
-        do {
+        System.out.println("Bem vindo "+nome+".");
+            do {
         //MENU PRINCIPAL  
         System.out.println("MENU PRINCIPAL");
         System.out.println("1.Mapa dos acentos");
         System.out.println("2.Comprar ingresso");
-        System.out.println("3.Cancelar compra de ingresso");
-        System.out.println("4.Exibir relatório de ocupação");
-        System.out.println("5.Sair");
+        System.out.println("3.Exibir relatório de ocupação");
+        System.out.println("4.Sair");
         opcao = sc.nextInt();//define a opção que o usuário vai selecionar no sistema
         //opção 1
         if (opcao == 1){
             System.out.println("MAPEAMENTO DE ACENTOS");
-            System.out.println(Arrays.deepToString(acentos));
+            for (int linha[] : acentos){
+                for (int acento : linha){
+                    System.out.println(acento+"");
+                }
+                System.out.println("");
+            }
         //opção 2
         } else if(opcao == 2){
-            System.out.println("Selecione o seu acento");
-            System.out.println(Arrays.deepToString(acentos));
-            System.out.println("Dígite o numero da coluna e fileira que vc deseja comprar o ingresso");
-            int escolhaFileira = sc.nextInt();
-            for (int i = 0)
-            
-            
+            System.out.println("Digite o numero da fileira 0 a 9");
+            int fileira = sc.nextInt();
+            System.out.println("Digite o numero do assento");
+            int assento = sc.nextInt();
+            System.out.println("Confirme a compra (se você cometeu um engano e deseja cancelar !!NÃO CONFIRME A COMPRA!!)");    
+            String confirma = sc.next();
+            if (confirma.equals("Sim")|| confirma.equals("sim")|| confirma.equals("SIM")){
+            if (acentos[fileira][assento] != 0){
+                acentos [fileira][assento] = 0;
+                System.out.println("Compra realizada om sucesso");
+            }else {
+                System.out.println("Assento já ocupado");
+            }
+            }else {
+                System.out.println("Compra cancelada");
+            }
         }
-        }while(opcao != 5);
+        }while(opcao != 4);
         }
     }
 }
